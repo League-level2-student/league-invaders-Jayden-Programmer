@@ -20,6 +20,7 @@ public class LeagueInvaders {
 		frame.add(gpanel); 
 		frame.setSize(WIDTH, HEIGHT);
 		
+		
 
 	}
 }
