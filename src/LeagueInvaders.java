@@ -11,8 +11,10 @@ public class LeagueInvaders {
 
 	LeagueInvaders() {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.addKeyListener(gpanel);
 		frame.setVisible(true);
 		frame.pack();
+		
 		
 	}
 
