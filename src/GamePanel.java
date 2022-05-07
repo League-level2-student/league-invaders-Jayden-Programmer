@@ -105,7 +105,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState == END) {
-				currentState = MENU;
+				currentState = MENU; 
+			
 			} else {
 				currentState++;
 			}
@@ -113,15 +114,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			System.out.println("UP");
+			rocketship.up();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			System.out.println("DOWN");
+			rocketship.down();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			System.out.println("LEFT");
+			rocketship.left();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			System.out.println("RIGHT");
+			rocketship.right();
 		}
 	}
 

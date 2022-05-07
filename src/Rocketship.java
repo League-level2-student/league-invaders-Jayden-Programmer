@@ -2,20 +2,21 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Rocketship extends GameObject {
-	void up() {
 
+	void up() {
+		y -= speed;
 	}
 
 	void down() {
-
+		y += speed;
 	}
 
 	void left() {
-
+		x -= speed;
 	}
 
 	void right() {
-	x+=speed; 
+		x += speed;
 	}
 
 	void draw(Graphics g) {
@@ -26,7 +27,9 @@ public class Rocketship extends GameObject {
 
 	public Rocketship(int x, int y, int width, int height) {
 		super(x, y, width, height);
-		int speed = 10;
+		speed = 10;
+
 		// TODO Auto-generated constructor stub
 	}
+
 }
