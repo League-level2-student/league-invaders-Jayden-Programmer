@@ -10,6 +10,8 @@ import java.sql.Time;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import GamePanel.ObjectManager;
+
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font titleFont = new Font("Arial", Font.PLAIN, 40);
 	Font titleFont1 = new Font("Arial", Font.PLAIN, 15);
@@ -21,8 +23,39 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int END = 2;
 	int currentState = MENU;
 	Rocketship rocketship = new Rocketship(250, 700, 50, 50);
-	ObjectManager object = new ObjectManager(); 
-	
+	Timer alienSpawn;
+
+	public static void Objectmanager() {
+		Rocketship rocketship = null;
+
+	}
+
+	void startGame() {
+		Timer alienSpawn = null;
+		alienSpawn.start();
+
+	}
+
+	public class Objectmanager implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			addAlien();
+			int speed = 1000;
+			alienSpawn = new Timer(1000, Objectmanager);
+			alienSpawn.start();
+			
+
+		}
+
+	}
+
+	public Projectile getProjectile() {
+		return new Projectile(x + WIDTH / 2, y, 10, 10);
+
+	}
+
 	public GamePanel() {
 		frameDraw = new Timer(1000 / 60, this);
 		frameDraw.start();
@@ -44,7 +77,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void updateGameState() {
-		 
+
 	}
 
 	void updateEndState() {
@@ -64,7 +97,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void drawGameState(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
-		
+		Objectmanager();
+		rocketship.draw(g);
 
 	}
 
@@ -107,8 +141,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState == END) {
-				currentState = MENU; 
-			
+				currentState = MENU;
+				startGame();
+
 			} else {
 				currentState++;
 			}

@@ -27,7 +27,7 @@ public class ObjectManager {
 
 	void purgeobjects() {
 		for (int i = 0; i < aliens.; i++) {
-
+		
 		}
 
 	}
