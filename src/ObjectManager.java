@@ -17,17 +17,18 @@ public class ObjectManager {
 
 	}
 
-	void draw(Graphics g) { 
-		rocket.draw(g); 
+	void draw(Graphics g) {
+		rocket.draw(g);
 		for (int i = 0; i < aliens.size(); i++) {
-			aliens.get(i).draw(g); 
-			
+			aliens.get(i).draw(g);
+
 		}
 	}
 
-	void purgeobjects() {
-		for (int i = 0; i < aliens.; i++) {
-		
+	void purgeObjects() {
+		for (int i = 0; i < aliens.size(); i++) {
+		if (aliens.get(i).isActive == false);
+		aliens.remove(i);
 		}
 
 	}
