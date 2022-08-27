@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -9,7 +10,9 @@ public class ObjectManager {
 	Random random = new Random();
 
 	public ObjectManager(Rocketship rocket) {
-
+	this.rocket = rocket; 
+	
+		
 	}
 
 	void addProjectile(Projectile projectile) {

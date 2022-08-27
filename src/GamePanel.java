@@ -5,14 +5,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.sql.Time;
+import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import GamePanel.ObjectManager;
-
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
+	public static BufferedImage image;
+	public static boolean needImage = true;
+	public static boolean gotImage = false;
+
+	void loadImage(String imageFile) {
+		if (needImage) {
+			try {
+				image = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
+				gotImage = true;
+			} catch (Exception e) {
+				System.out.println("something"); 
+			}
+			needImage = false;
+		}
+	}
+
 	Font titleFont = new Font("Arial", Font.PLAIN, 40);
 	Font titleFont1 = new Font("Arial", Font.PLAIN, 15);
 	Font titleFont2 = new Font("Arial", Font.PLAIN, 40);
@@ -24,17 +39,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	int currentState = MENU;
 	Rocketship rocketship = new Rocketship(250, 700, 50, 50);
 	Timer alienSpawn;
-	ObjectManager objectmanager = new ObjectManager(rocketship); 
-	public static void Objectmanager() {
-		Rocketship rocketship = null; 
-
-	}
-
-	void startGame() {
-		Timer alienSpawn = null;
-		alienSpawn.start();
-
-	}
+	ObjectManager objectmanager = new ObjectManager(rocketship);
 
 	
 
@@ -44,8 +49,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public GamePanel() {
+
+		if (needImage) {
+			loadImage("space.png");
+
+		}
 		frameDraw = new Timer(1000 / 60, this);
 		frameDraw.start();
+
 	}
 
 	@Override
@@ -61,10 +72,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void updateMenuState() {
+
 	}
 
 	void updateGameState() {
-	objectmanager.update(); 
+		objectmanager.update();
 	}
 
 	void updateEndState() {
@@ -79,13 +91,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setFont(titleFont1);
 		g.drawString("Press ENTER to start", 125, 200);
 		g.drawString("Press SPACE for instructions", 125, 300);
+
 	}
 
 	void drawGameState(Graphics g) {
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
-		Objectmanager(); 
-		rocketship.draw(g);
+		if (gotImage) {
+			g.drawImage(image, 0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT, null);
+		} else {
+			g.setColor(Color.BLACK);
+			g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+		}
+		
+		objectmanager.draw(g);
 
 	}
 
@@ -129,7 +146,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState == END) {
 				currentState = MENU;
-				startGame();
 
 			} else {
 				currentState++;

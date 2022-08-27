@@ -8,6 +8,7 @@ public class Rocketship extends GameObject {
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
+	
 
 	void loadImage(String imageFile) {
 		if (needImage) {
