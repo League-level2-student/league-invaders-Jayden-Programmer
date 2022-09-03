@@ -1,22 +1,24 @@
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ObjectManager {
+public class ObjectManager implements ActionListener {
 	Rocketship rocket;
 	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	ArrayList<Alien> aliens = new ArrayList<Alien>();
 	Random random = new Random();
 
 	public ObjectManager(Rocketship rocket) {
-	this.rocket = rocket; 
-	
-		
+		this.rocket = rocket;
+
 	}
 
 	void addProjectile(Projectile projectile) {
 		projectiles.add(projectile);
+		
 
 	}
 
@@ -30,8 +32,9 @@ public class ObjectManager {
 
 	void purgeObjects() {
 		for (int i = 0; i < aliens.size(); i++) {
-		if (aliens.get(i).isActive == false);
-		aliens.remove(i);
+			if (aliens.get(i).isActive == false)
+				;
+			aliens.remove(i);
 		}
 
 	}
@@ -46,5 +49,11 @@ public class ObjectManager {
 
 		}
 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		addAlien(); 
 	}
 }

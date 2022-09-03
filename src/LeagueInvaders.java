@@ -14,15 +14,12 @@ public class LeagueInvaders {
 		frame.addKeyListener(gpanel);
 		frame.setVisible(true);
 		frame.pack();
-		
-		
+
 	}
 
 	void setup() {
-		frame.add(gpanel); 
+		frame.add(gpanel);
 		frame.setSize(WIDTH, HEIGHT);
-		
-		
 
 	}
 }

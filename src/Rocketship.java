@@ -16,14 +16,14 @@ public class Rocketship extends GameObject {
 				image = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
 				gotImage = true;
 			} catch (Exception e) {
-
+				
 			}
 			needImage = false;
-			if (needImage) {
-				loadImage("rocket.png");
-			}
 		}
 	}
+	public Projectile getProjectile() {
+        return new Projectile(x+width/2, y, 10, 10);
+}  
 
 	void up() {
 		y -= speed;
@@ -36,7 +36,7 @@ public class Rocketship extends GameObject {
 	void left() {
 		x -= speed;
 	}
-
+	
 	void right() {
 		x += speed;
 	}
@@ -56,6 +56,11 @@ public class Rocketship extends GameObject {
 	public Rocketship(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		speed = 10;
+		if (needImage) {
+			loadImage("rocket.png");
+	
+		}
+
 
 		// TODO Auto-generated constructor stub
 	}

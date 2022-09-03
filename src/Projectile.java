@@ -19,7 +19,7 @@ public class Projectile extends GameObject {
 			}
 			needImage = false;
 			if (needImage) {
-			    loadImage ("bullet.png");
+				loadImage("bullet.png");
 			}
 		}
 	}
@@ -37,6 +37,10 @@ public class Projectile extends GameObject {
 			g.setColor(Color.BLUE);
 			g.fillRect(x, y, width, height);
 		}
+	}
+
+	public Projectile getProjectile() {
+		return new Projectile(x + width / 2, y, 10, 10);
 	}
 
 	public Projectile(int x, int y, int width, int height) {
