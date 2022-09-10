@@ -1,14 +1,11 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
 import javax.imageio.ImageIO;
-
 public class Projectile extends GameObject {
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
-
 	void loadImage(String imageFile) {
 		if (needImage) {
 			try {
@@ -16,18 +13,15 @@ public class Projectile extends GameObject {
 				gotImage = true;
 			} catch (Exception e) {
 
-			}
-			needImage = false;
-			if (needImage) {
-				loadImage("bullet.png");
+			
+		
+		
 			}
 		}
 	}
-
 	void update() {
 		y -= speed;
 	}
-
 	void draw(Graphics g) {
 		g.setColor(Color.RED);
 		g.fillRect(x, y, width, height);
@@ -38,15 +32,13 @@ public class Projectile extends GameObject {
 			g.fillRect(x, y, width, height);
 		}
 	}
-
 	public Projectile getProjectile() {
 		return new Projectile(x + width / 2, y, 10, 10);
 	}
-
 	public Projectile(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		speed = 10;
+		loadImage("bullet.png");
 		// TODO Auto-generated constructor stub
 	}
-
 }

@@ -50,10 +50,17 @@ public class ObjectManager implements ActionListener {
 		}
 
 	}
-
+	void alienfall() {
+	for (int i = 0; i < aliens.; i++) {
+	
+	}
+	
+	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		addAlien(); 
+		
+
+		
 	}
 }

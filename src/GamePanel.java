@@ -28,8 +28,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int END = 2;
 	int currentState = MENU;
 	Rocketship rocketship = new Rocketship(250, 700, 50, 50);
-	Timer alienSpawn;
 	ObjectManager objectmanager = new ObjectManager(rocketship);
+	Timer alienSpawn = new Timer(1000 , this);
+	Timer alienfall = new Timer(1000, this); 
 
 	void loadImage(String imageFile) {
 		if (needImage) {
@@ -43,8 +44,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 	}
 	void startgame() {
-	    alienSpawn = new Timer(1000 , objectmanager);
 	    alienSpawn.start(); 
+	    alienfall.start(); 
 	}
 
 	public Projectile getProjectile() {
@@ -128,12 +129,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		repaint();
+		if(e.getSource() == alienSpawn)
+			objectmanager.addAlien(); 
+		if(e.getSource() == alienfall)
+			objectmanager.
+		
 		if (currentState == MENU) {
 			updateMenuState();
 		} else if (currentState == GAME) {
+			
 			updateGameState();
 		} else if (currentState == END) {
 			updateEndState();
+			
 		}
 
 	}
@@ -151,9 +159,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			if (currentState == END) {
 				currentState = MENU;
 				startgame();
+			
 
 			} else {
 				currentState++;
+				objectmanager.purgeObjects();
+				alienSpawn.restart();
 			}
 
 		}
