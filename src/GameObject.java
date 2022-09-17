@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class GameObject {
 	int x;
@@ -8,10 +9,16 @@ public class GameObject {
 	int height;
 	int speed = 0;
 	boolean isActive = true;
+	Rectangle collisionBox = new Rectangle(x,y,width,height);
+	
+	
 
 	void update() {
 y+=speed; 
 y-=speed; 
+collisionBox.setBounds(x, y, width, height);
+
+
 	}
 
 	public GameObject(int x, int y, int width, int height) {
