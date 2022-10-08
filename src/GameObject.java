@@ -14,8 +14,6 @@ public class GameObject {
 	
 
 	void update() {
-y+=speed; 
-y-=speed; 
 collisionBox.setBounds(x, y, width, height);
 
 

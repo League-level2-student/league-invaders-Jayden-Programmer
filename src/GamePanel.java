@@ -23,7 +23,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font titleFont2 = new Font("Arial", Font.PLAIN, 40);
 	Font titleFont3 = new Font("Arial", Font.PLAIN, 15);
 	Timer frameDraw;
-	final int MENU = 0;
+	final int MENU = 0;      
 	final int GAME = 1;
 	final int END = 2;
 	int currentState = MENU;
@@ -45,6 +45,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 	void startgame() {
 	    alienSpawn.start(); 
+	
 	    
 	}
 
@@ -72,7 +73,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		} else if (currentState == GAME) {
 			drawGameState(g);
 		} else if (currentState == END) {
-			drawEndState(g);
+			drawEndState(g); 
+			
 		}
 	}
 
@@ -82,7 +84,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void updateGameState() {
 		objectmanager.update();
-		if (rocketship.isActive == false) {
+		if (objectmanager.rocket.isActive == false) {
 			currentState = END;  
 			
 		}
@@ -125,8 +127,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Game Over", 150, 150);
 		g.setFont(titleFont3);
 		g.setColor(Color.YELLOW);
-		g.drawString("You killed enemies", 150, 300);
+		g.drawString("You killed" + objectmanager.getScore() + "enemies", 150, 300);
 		g.drawString("Press ENTER to restart", 150, 400);
+		
 
 	}
 
