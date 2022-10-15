@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -22,10 +23,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font titleFont1 = new Font("Arial", Font.PLAIN, 15);
 	Font titleFont2 = new Font("Arial", Font.PLAIN, 40);
 	Font titleFont3 = new Font("Arial", Font.PLAIN, 15);
+	Font titleFont4 = new Font("Arial", Font.PLAIN, 40); 
 	Timer frameDraw;
 	final int MENU = 0;      
 	final int GAME = 1;
 	final int END = 2;
+	final int INS = 4;
 	int currentState = MENU;
 	Rocketship rocketship = new Rocketship(250, 700, 50, 50);
 	ObjectManager objectmanager = new ObjectManager(rocketship);
@@ -103,6 +106,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setFont(titleFont1);
 		g.drawString("Press ENTER to start", 125, 200);
 		g.drawString("Press SPACE for instructions", 125, 300);
+		
 
 	}
 
@@ -127,7 +131,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Game Over", 150, 150);
 		g.setFont(titleFont3);
 		g.setColor(Color.YELLOW);
-		g.drawString("You killed" + objectmanager.getScore() + "enemies", 150, 300);
+		g.drawString("You killed " + objectmanager.getScore() + " enemies", 150, 300);
 		g.drawString("Press ENTER to restart", 150, 400);
 		
 
@@ -164,16 +168,24 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+
 			if (currentState == END) {
+				objectmanager.rocket.isActive = true; 
+				objectmanager.rocket.x = 250; 
+				objectmanager.rocket.y = 700; 
+				objectmanager.aliens.clear();
 				currentState = MENU;
 				startgame();
-			
-
+	
+			if (currentState == INS) {
+			JOptionPane.showMessageDialog(null, "PRESS SPACE TO SHOOT AND PRESS ENTER TO RESTART YOUR GAME. THE SCORE WILL SHOW WHEN YOU RESET OR DIE.");          
+			}
 			} else {
 				currentState++;
 				objectmanager.purgeObjects();
 				alienSpawn.restart();
-			}
+			} 
+			
 
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
